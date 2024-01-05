@@ -1,16 +1,20 @@
-import { CORE_CONCEPTS } from "./data";
-import Header from "./components/Header/Header";
-import CoreConcept from "./components/CoreConcept";
-import TabButton from "./components/TabButton";
-import { useState } from "react";
-import { EXAMPLES } from "./data.js";
+import { useState } from 'react';
+
+import Header from './components/Header/Header.jsx';
+import TabButton from './components/TabButton.jsx';
+import CoreConcepts from './components/CoreConcepts.jsx';
+import { EXAMPLES } from './data.js';
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [selectedTopic, setSelectedTopic] = useState();
 
-  const handleSelect = (selectedButton) => {
+  function handleSelect(selectedButton) {
+    // selectedButton => 'components', 'jsx', 'props', 'state'
     setSelectedTopic(selectedButton);
-  };
+    // console.log(selectedTopic);
+  }
+
+  console.log('APP COMPONENT EXECUTING');
 
   let tabContent = <p>Please select a topic.</p>;
 
@@ -27,6 +31,7 @@ function App() {
   }
 
   return (
+<<<<<<< HEAD
     <div>
       <Header />
       <main>
@@ -45,6 +50,15 @@ function App() {
         </section>
       </main>
     </div>
+=======
+    <>
+      <Header />
+      <main>
+        <CoreConcepts/>
+        
+      </main>
+    </>
+>>>>>>> c7d656b72d7b95015ab9eddbe873ab224f718acb
   );
 }
 
