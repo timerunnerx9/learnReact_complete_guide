@@ -12,7 +12,6 @@ export default function ResultTable({ userInputs }) {
   };
 
   const annualData = calculateInvestmentResults(parameterObject);
-  console.log(annualData);
 
   return (
     <table id="result">

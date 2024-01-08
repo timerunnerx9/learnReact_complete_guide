@@ -4,20 +4,12 @@ export default function UserInput({
   functionTarget,
   onChangeFunction,
 }) {
-    console.log(userInputs);
-
-    console.log(userInputs + "  userInputs");
-    console.log(label + "  label");
-    console.log(functionTarget + "  functionTarget");
-
-    const value = userInputs.label;
-
   return (
     <div>
       <label className="center">{label}</label>
       <input
-        onChange={() => onChangeFunction(functionTarget)}
-        value={userInputs.{label}}
+        onChange={(event) => onChangeFunction(event, functionTarget)}
+        value={userInputs.functionTarget}
         type="number"
       />
     </div>

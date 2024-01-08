@@ -11,16 +11,14 @@ const initialInput = {
 };
 
 function App() {
-
   const [userInputs, setUserInputs] = useState(initialInput);
 
   return (
     <body>
-      <Header/>
+      <Header />
       <div>
-          <UserInputs userInputs={userInputs} setUserInputs={setUserInputs}/>
-          <ResultTable userInputs={userInputs}/>
-  
+        <UserInputs userInputs={userInputs} setUserInputs={setUserInputs} />
+        <ResultTable userInputs={userInputs} />
       </div>
     </body>
   );
