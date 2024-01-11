@@ -32,9 +32,9 @@ export default function UserInputs({ userInputs, setUserInputs }) {
 
   return (
     <div>
-      <div className="input-group" id="user-input" justify-content="center">
+      <section id="user-input" className="input-group" justify-content="center">
         {userInputList}
-      </div>
+      </section>
       <div>
         {userInputs.duration < 1 && (
           <div>
