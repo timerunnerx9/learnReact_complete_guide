@@ -9,8 +9,9 @@ export default function Sidebar() {
           +Add Project
         </button>
 
+        <p className="flex flex-col gap-1 my-4">
         <Projects/>
-     
+     </p>
     </aside>
   );
 }
