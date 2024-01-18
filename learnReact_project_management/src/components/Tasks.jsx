@@ -22,30 +22,37 @@ export default function Tasks({ projects, setProjects, currProject }) {
       // setProjects((prevProjects) => {
       //   return updatedProjects;
       // });
-      updateProjectHelper(newCurrTasks);
+      updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
 
       return newCurrTasks;
     });
   }
 
   function handleAddTask(){
-    console.log(addTaskBox.current.value);
+    const newTaskValue = addTaskBox.current.value;
+    console.log(newTaskValue);
+    if(!newTaskValue){
+      return;
+    }
 
     setCurrTasks((prevCurrTasks)=>{
+      console.log(addTaskBox.current.value);
 
-      const newCurrTasks = [...prevCurrTasks];
-      console.log(prevCurrTasks)
-      newCurrTasks.push(addTaskBox.current.value);
-      console.log(newCurrTasks)
+      const newCurrTasks = [...prevCurrTasks, newTaskValue];
+   
 
-      updateProjectHelper(newCurrTasks);
-
-    })
-    addTaskBox.current.value = "";
+      updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
+      
+      return newCurrTasks;
+    
+  })
+  addTaskBox.current.value = "";
+  console.log(addTaskBox.current.value);
+  
 
   }
 
-   function updateProjectHelper(newCurrTasks){
+   function updateProjectHelper(projects, setProjects, newCurrTasks,currProject){
       const updatedCurrProject = {
         ...currProject,
         tasks: newCurrTasks,
