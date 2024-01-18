@@ -1,23 +1,91 @@
-export default function Tasks() {
+import { useState, useRef } from "react";
+
+export default function Tasks({ projects, setProjects, currProject }) {
+  const addTaskBox = useRef();
+  const [currTasks, setCurrTasks] = useState(currProject.tasks);
+
+  function handleRemove(event, task) {
+    setCurrTasks((prevCurrTasks) => {
+      const newCurrTasks = prevCurrTasks.filter(
+        (eachTask) => eachTask !== task
+      );
+
+      // const updatedCurrProject = {
+      //   ...currProject,
+      //   tasks: newCurrTasks,
+      // };
+
+      // const updatedProjects = projects.map((project) => {
+      //   return project === currProject ? updatedCurrProject : project;
+      // });
+
+      // setProjects((prevProjects) => {
+      //   return updatedProjects;
+      // });
+      updateProjectHelper(newCurrTasks);
+
+      return newCurrTasks;
+    });
+  }
+
+  function handleAddTask(){
+    console.log(addTaskBox.current.value);
+
+    setCurrTasks((prevCurrTasks)=>{
+
+      const newCurrTasks = [...prevCurrTasks];
+      console.log(prevCurrTasks)
+      newCurrTasks.push(addTaskBox.current.value);
+      console.log(newCurrTasks)
+
+      updateProjectHelper(newCurrTasks);
+
+    })
+    addTaskBox.current.value = "";
+
+  }
+
+   function updateProjectHelper(newCurrTasks){
+      const updatedCurrProject = {
+        ...currProject,
+        tasks: newCurrTasks,
+      };
+
+      const updatedProjects = projects.map((project) => {
+        return project === currProject ? updatedCurrProject : project;
+      });
+
+      setProjects((prevProjects) => {
+        return updatedProjects;
+      });
+
+
+   }
+
   return (
     <div>
       <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
 
       <div className="flex items-center gap-4">
-        <input className="w-64 px-2 py-1 rounded-sm bg-stone-200" />
-        <button> Add Task </button>
+        <input ref={addTaskBox} className="w-64 px-2 py-1 rounded-sm bg-stone-200" />
+        <button onClick={handleAddTask}> Add Task </button>
       </div>
 
       <div>
-        <ul className="p-4 mt-8 rounded-md bg-stone-100">
-          <li className="flex justify-between my-4">
-            test1
-            <button className="text-stone-700 hover:text-red-500">
-              Delete
-            </button>
-          </li>
-          <li className="flex justify-between my-4">test2</li>
-        </ul>
+        <ol className="p-4 mt-8 rounded-md bg-stone-100">
+          {currTasks.map((task) => (
+            <li className="flex justify-between my-4" key={task}>
+              {task}
+
+              <button
+                onClick={(e) => handleRemove(e, task)}
+                className="text-stone-700 hover:text-red-500"
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   );
