@@ -6,34 +6,12 @@ import {useState} from 'react';
 
 function App() {
 
-  const [currState, setState] = useState('100');
+  const [currState, setState] = useState('000');
 
-  const [projects, setProjects] = useState([{
+  const [projects, setProjects] = useState([]);
 
-    title: 'test title 4',
-    description: 'test description 4',
-    date: '1/15/2024',
-    tasks: ['task1','task2', 'task3']
-  },{
+  const [selectedProject, setSelectedProject] = useState('');
 
-    title: 'test title 2',
-    description: 'test description 2',
-    date: '1/15/2024',
-    tasks: ['task1','task2']
-  },{
-    
-    title: 'test title 1',
-    description: 'test description',
-    date: '1/15/2024',
-    tasks: ['task1']
-  }]);
-
-  const [selectedProject, setSelectedProject] = useState('test title 1');
-
-
-  const addNewProject = () =>{
-    
-  }
 
   return (
     <>
