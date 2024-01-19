@@ -1,8 +1,12 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 
 export default function Tasks({ projects, setProjects, currProject }) {
   const addTaskBox = useRef();
   const [currTasks, setCurrTasks] = useState(currProject.tasks);
+
+  useEffect(() => {
+    setCurrTasks(currProject.tasks);
+  }, [currProject]);
 
   function handleRemove(event, task) {
     setCurrTasks((prevCurrTasks) => {
@@ -10,18 +14,7 @@ export default function Tasks({ projects, setProjects, currProject }) {
         (eachTask) => eachTask !== task
       );
 
-      // const updatedCurrProject = {
-      //   ...currProject,
-      //   tasks: newCurrTasks,
-      // };
 
-      // const updatedProjects = projects.map((project) => {
-      //   return project === currProject ? updatedCurrProject : project;
-      // });
-
-      // setProjects((prevProjects) => {
-      //   return updatedProjects;
-      // });
       updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
 
       return newCurrTasks;
@@ -36,18 +29,15 @@ export default function Tasks({ projects, setProjects, currProject }) {
     }
 
     setCurrTasks((prevCurrTasks)=>{
-      console.log(addTaskBox.current.value);
 
       const newCurrTasks = [...prevCurrTasks, newTaskValue];
    
-
       updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
       
       return newCurrTasks;
     
   })
   addTaskBox.current.value = "";
-  console.log(addTaskBox.current.value);
   
 
   }
@@ -83,7 +73,6 @@ export default function Tasks({ projects, setProjects, currProject }) {
           {currTasks.map((task) => (
             <li className="flex justify-between my-4" key={task}>
               {task}
-
               <button
                 onClick={(e) => handleRemove(e, task)}
                 className="text-stone-700 hover:text-red-500"

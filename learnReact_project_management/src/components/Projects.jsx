@@ -1,13 +1,19 @@
-export default function Projects({projects}) {
+export default function Projects({projects,setState, setSelectedProject}) {
 
 
   let content = undefined;
 
   function handleOnclick(projectTitle){
+    
+    setSelectedProject((prevSelectedProject)=>{
+      return projectTitle;
+    });
 
+    setState('100');
     
 
   }
+
 
 
   if (projects) {

@@ -8,6 +8,8 @@ export default function RenderingProject({setState, projects, setProjects, selec
   let currProject = projects.filter(project =>{
     return project.title === selectedProject
   })
+
+  console.log(currProject);
   currProject = currProject[0];
 
   
