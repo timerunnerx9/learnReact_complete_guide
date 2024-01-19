@@ -1,53 +1,67 @@
 import { useRef } from "react";
 
-export default function NewProjectForm({ setState, projects, setProjects, setSelectedProject }) {
+export default function NewProjectForm({
+  setState,
+  projects,
+  setProjects,
+  setSelectedProject,
+}) {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const dueDateRef = useRef();
 
-  function resetFields(){
-    titleRef.current.value='';
-    descriptionRef.current.value='';
-    dueDateRef.current.value=null;
+  function resetFields() {
+    titleRef.current.value = "";
+    descriptionRef.current.value = "";
+    dueDateRef.current.value = null;
   }
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
 
     const titleValue = titleRef.current.value;
     const desriptValue = descriptionRef.current.value;
     const dateValue = dueDateRef.current.value;
-    if(!titleValue || titleValue ==="" || 
-    !desriptValue || desriptValue===""||
-    !dateValue || dateValue===""){
+    if (
+      !titleValue ||
+      titleValue === "" ||
+      !desriptValue ||
+      desriptValue === "" ||
+      !dateValue ||
+      dateValue === ""
+    ) {
       return;
     }
 
-    setProjects( [...projects, {
-      title: titleValue,
-      description: desriptValue,
-      dueDate: dateValue,
-      tasks: []
-    }]);
+    setProjects([
+      ...projects,
+      {
+        title: titleValue,
+        description: desriptValue,
+        dueDate: dateValue,
+        tasks: [],
+      },
+    ]);
 
     setSelectedProject(titleRef.current.value);
 
     resetFields();
 
-    setState('100')
-    
+    setState("100");
   };
 
-  function handleCancel(){
-    setState('000');
+  function handleCancel() {
+    setState("000");
   }
 
   return (
     <div>
       <form className="mt-4 " onSubmit={handleSubmit}>
         <menu className="flex items-center justify-end gap-4 my-4">
-          <button className="text-stone-800 hover:text-stone-950" onClick={handleCancel}>
+          <button
+            className="text-stone-800 hover:text-stone-950"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
           <button

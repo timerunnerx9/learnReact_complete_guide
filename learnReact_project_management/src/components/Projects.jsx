@@ -1,6 +1,5 @@
 export default function Projects({projects,setState, setSelectedProject}) {
 
-
   let content = undefined;
 
   function handleOnclick(projectTitle){
@@ -11,9 +10,7 @@ export default function Projects({projects,setState, setSelectedProject}) {
 
     setState('100');
     
-
   }
-
 
 
   if (projects) {

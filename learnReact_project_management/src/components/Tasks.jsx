@@ -1,4 +1,4 @@
-import { useState, useRef,useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Tasks({ projects, setProjects, currProject }) {
   const addTaskBox = useRef();
@@ -14,57 +14,58 @@ export default function Tasks({ projects, setProjects, currProject }) {
         (eachTask) => eachTask !== task
       );
 
-
-      updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
+      updateProjectHelper(projects, setProjects, newCurrTasks, currProject);
 
       return newCurrTasks;
     });
   }
 
-  function handleAddTask(){
+  function handleAddTask() {
     const newTaskValue = addTaskBox.current.value;
     console.log(newTaskValue);
-    if(!newTaskValue){
+    if (!newTaskValue) {
       return;
     }
 
-    setCurrTasks((prevCurrTasks)=>{
-
+    setCurrTasks((prevCurrTasks) => {
       const newCurrTasks = [...prevCurrTasks, newTaskValue];
-   
-      updateProjectHelper(projects, setProjects,newCurrTasks,currProject);
-      
-      return newCurrTasks;
-    
-  })
-  addTaskBox.current.value = "";
-  
 
+      updateProjectHelper(projects, setProjects, newCurrTasks, currProject);
+
+      return newCurrTasks;
+    });
+    addTaskBox.current.value = "";
   }
 
-   function updateProjectHelper(projects, setProjects, newCurrTasks,currProject){
-      const updatedCurrProject = {
-        ...currProject,
-        tasks: newCurrTasks,
-      };
+  function updateProjectHelper(
+    projects,
+    setProjects,
+    newCurrTasks,
+    currProject
+  ) {
+    const updatedCurrProject = {
+      ...currProject,
+      tasks: newCurrTasks,
+    };
 
-      const updatedProjects = projects.map((project) => {
-        return project === currProject ? updatedCurrProject : project;
-      });
+    const updatedProjects = projects.map((project) => {
+      return project === currProject ? updatedCurrProject : project;
+    });
 
-      setProjects((prevProjects) => {
-        return updatedProjects;
-      });
-
-
-   }
+    setProjects((prevProjects) => {
+      return updatedProjects;
+    });
+  }
 
   return (
     <div>
       <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
 
       <div className="flex items-center gap-4">
-        <input ref={addTaskBox} className="w-64 px-2 py-1 rounded-sm bg-stone-200" />
+        <input
+          ref={addTaskBox}
+          className="w-64 px-2 py-1 rounded-sm bg-stone-200"
+        />
         <button onClick={handleAddTask}> Add Task </button>
       </div>
 
