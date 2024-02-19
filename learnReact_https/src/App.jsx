@@ -6,6 +6,7 @@ import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
 import logoImg from "./assets/logo.png";
 import AvailablePlaces from "./components/AvailablePlaces.jsx";
 import { fetchUserPlaces, updateUserPlaces } from "./http.js";
+import Error from "./components/Error.jsx";
 
 function App() {
   const selectedPlace = useRef();
@@ -27,6 +28,7 @@ function App() {
         const places = await fetchUserPlaces();
         setUserPlaces(places);
       } catch (error) {
+        console.log('caught error');
         setError({message: error.message || 'Failed to fetch user places'});
       }
    
@@ -122,6 +124,7 @@ function App() {
         </p>
       </header>
       <main>
+        
         {error && <Error title="An error occured!" message={error.message} />}
         {!error && <Places
           title="I'd like to visit ..."
@@ -131,6 +134,7 @@ function App() {
           places={userPlaces}
           onSelectPlace={handleStartRemovePlace}
         />}
+        
 
         <AvailablePlaces onSelectPlace={handleSelectPlace} />
       </main>
